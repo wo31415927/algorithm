@@ -4,6 +4,8 @@ import com.google.common.truth.Truth;
 
 import org.junit.Test;
 
+import book.p1.Stack2;
+
 /**
  * zeyu
  * 2017/9/21

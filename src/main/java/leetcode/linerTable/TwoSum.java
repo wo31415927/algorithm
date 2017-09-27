@@ -1,4 +1,4 @@
-package linerTable;
+package leetcode.linerTable;
 
 import java.util.HashMap;
 import java.util.Map;

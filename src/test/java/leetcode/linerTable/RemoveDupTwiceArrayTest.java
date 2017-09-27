@@ -1,4 +1,4 @@
-package linerTable;
+package leetcode.linerTable;
 
 import junit.framework.TestCase;
 

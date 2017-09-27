@@ -1,4 +1,4 @@
-package data;
+package book.p1;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -14,12 +14,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * 本算法的效率介于quick-union和quick-union加权之间
  * zeyu
  * 2017/9/22
  */
 @Getter
 @Setter
-public class UF {
+public class UF implements IUnion {
     protected int cnt;
     protected List<Node> allNodes = new LinkedList<>();
 
@@ -37,12 +38,16 @@ public class UF {
         if (!connected(p, q)) {
             Node nodeP = allNodes.get(p);
             Node nodeQ = allNodes.get(q);
-            nodeP.addRel(nodeP);
-            nodeQ.addRel(nodeQ);
-            if (nodeP.getId() < nodeQ.getId()) {
-                nodeQ.id(nodeP.getId());
-            }else{
+            nodeP.addRel(nodeQ);
+            nodeQ.addRel(nodeP);
+            if (allNodes.get(nodeP.getId()).getCnt() < allNodes.get(nodeQ.getId()).getCnt()) {
                 nodeP.id(nodeQ.getId());
+                allNodes.get(nodeP.getId()).setCnt(0);
+                allNodes.get(nodeQ.getId()).setCnt(allNodes.get(nodeP.getId()).getCnt() + allNodes.get(nodeQ.getId()).getCnt());
+            } else {
+                nodeQ.id(nodeP.getId());
+                allNodes.get(nodeQ.getId()).setCnt(0);
+                allNodes.get(nodeP.getId()).setCnt(allNodes.get(nodeP.getId()).getCnt() + allNodes.get(nodeQ.getId()).getCnt());
             }
             cnt--;
             return true;
@@ -55,21 +60,21 @@ public class UF {
     }
 
     public boolean connected(int p, int q) {
-        return allNodes.get(p).getId() == allNodes.get(q).getId();
+        return find(p) == find(q);
     }
 
     public int count() {
         return cnt;
     }
 
-    public void printById(){
-        Multimap<Integer,Node> resultMap = ArrayListMultimap.create();
-        for(Node n : allNodes){
-            resultMap.put(n.getId(),n);
+    public void printById() {
+        Multimap<Integer, Node> resultMap = ArrayListMultimap.create();
+        for (Node n : allNodes) {
+            resultMap.put(n.getId(), n);
         }
-        for(Map.Entry<Integer,Collection<Node>> entry : resultMap.asMap().entrySet()){
+        for (Map.Entry<Integer, Collection<Node>> entry : resultMap.asMap().entrySet()) {
             String s = " ";
-            for(Node n : entry.getValue()){
+            for (Node n : entry.getValue()) {
                 s += n.getIndex() + " ";
             }
             System.out.println(entry.getKey() + " -> [" + s + "]");
@@ -79,13 +84,19 @@ public class UF {
     @Getter
     @Setter
     private class Node {
+        //序号,识别自己
         protected int index;
+        //相关节点
         protected Set<Node> relNodes = new HashSet<>();
+        //分量
         protected int id;
+        //当前分量包含的节点总数
+        protected int cnt;
 
         public Node(int index) {
             this.index = index;
             this.id = index;
+            this.cnt = 1;
         }
 
         public Node addRel(Node n) {
@@ -103,5 +114,17 @@ public class UF {
             return this;
         }
 
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Node)) return false;
+            Node node = (Node) o;
+            return index == node.index;
+        }
+
+        @Override
+        public int hashCode() {
+            return index;
+        }
     }
 }

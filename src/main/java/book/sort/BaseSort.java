@@ -19,4 +19,12 @@ public abstract class BaseSort {
     arr[i] = arr[j];
     arr[j] = tmp;
   }
+
+  protected boolean exchIfNotEqual(Comparable[] arr, int i, int j) {
+    if(0 != arr[i].compareTo(arr[j])){
+      exch(arr,i,j);
+      return true;
+    }
+    return false;
+  }
 }

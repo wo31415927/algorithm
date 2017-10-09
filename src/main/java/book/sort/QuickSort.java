@@ -9,6 +9,10 @@ public class QuickSort extends BaseSort {
   protected final int M;
   protected InsertSort insertSort = new InsertSort();
 
+  public QuickSort() {
+    this(5);
+  }
+
   @Override
   protected void sort(Comparable[] a, int lo, int hi) {
     if (lo >= hi) return;

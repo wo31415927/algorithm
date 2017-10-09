@@ -6,6 +6,10 @@ public class MergeSort1 extends MergeSort {
     this.aux = aux;
   }
 
+  public MergeSort1() {
+    this(null);
+  }
+
   @Override
   public void sort(Comparable[] a) {
     aux = new Comparable[a.length];

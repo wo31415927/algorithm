@@ -9,6 +9,10 @@ public class QuickSampleSort extends QuickSort {
     this.sample = sample;
   }
 
+  public QuickSampleSort() {
+    this(5,3);
+  }
+
   public int calcMedian(Comparable[] a, int lo, int hi) {
     if (lo >= hi) return lo;
     if (0 == (hi - lo) % 2) {

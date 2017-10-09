@@ -6,6 +6,9 @@ public abstract class BaseSort {
     sort(a,0,a.length-1);
   }
   protected abstract void sort(Comparable[] a,int start,int end);
+  protected String name(){
+    return this.getClass().getSimpleName();
+  }
 
   protected boolean less(Comparable a, Comparable b) {
     return a.compareTo(b) < 0;

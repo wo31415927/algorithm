@@ -4,7 +4,7 @@ import com.google.common.truth.Truth;
 
 import org.junit.Test;
 
-import book.p1.UF;
+import book.base.UF;
 
 /**
  * zeyu

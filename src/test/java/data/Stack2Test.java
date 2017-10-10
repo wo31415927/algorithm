@@ -4,7 +4,7 @@ import com.google.common.truth.Truth;
 
 import org.junit.Test;
 
-import book.p1.Stack2;
+import book.base.Stack2;
 
 /**
  * zeyu

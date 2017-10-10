@@ -27,7 +27,7 @@ public class QuickSort extends BaseSort {
 
   protected int partition(Comparable[] a, int lo, int hi) {
     if (lo >= hi) return lo;
-    Comparable v = a[lo];
+    Comparable v = initCmp(a,lo,hi);
     int i = lo;
     int j = hi + 1;
     while (true) {

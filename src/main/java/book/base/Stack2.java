@@ -1,4 +1,4 @@
-package book.p1;
+package book.base;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

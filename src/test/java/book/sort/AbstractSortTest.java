@@ -49,10 +49,10 @@ public class AbstractSortTest {
   @Parameterized.Parameter(3)
   public /* NOT private */ Integer[] expected;
 
-  public static Integer[] initArr(int size, int multiple) {
+  public static Integer[] initArr(int size, double multiple) {
     Integer[] a = new Integer[size];
     for (int i = 0; i < a.length; i++) {
-      a[i] = random.nextInt(size * multiple);
+      a[i] = random.nextInt(Double.valueOf(Math.floor(size * multiple)).intValue());
     }
     return a;
   }
@@ -61,7 +61,7 @@ public class AbstractSortTest {
     return initArr(size, 100);
   }
 
-  public static void initArrList(int size, int multiple) {
+  public static void initArrList(int size, double multiple) {
     Integer[] a = initArr(size, multiple);
     Integer[] orgin = Arrays.copyOfRange(a, 0, a.length);
     Arrays.parallelSort(a);

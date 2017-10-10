@@ -1,4 +1,4 @@
-package book.p1;
+package book.base;
 
 /**
  * zeyu

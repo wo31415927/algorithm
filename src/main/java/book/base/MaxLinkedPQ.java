@@ -16,8 +16,21 @@ public class MaxLinkedPQ<E extends Comparable<E>> implements IPriorityQueue<E>,I
 //    protected Node tailParent;
 
     public MaxLinkedPQ(E[] arr) {
-        for (E e : arr) {
-            insert(e);
+        this(arr,0,arr.length-1);
+    }
+
+    public MaxLinkedPQ(E[] arr,int lo,int hi) {
+        for (int i=lo;i<=hi;i++) {
+            insert(arr[i]);
+        }
+    }
+
+    public static void sort(Comparable[] arr, int lo, int hi) {
+        if (null == arr || 0 == arr.length) return;
+        //由于输入数组arr[0]不为null,所以还是需要额外的空间
+        MaxLinkedPQ maxPQ = new MaxLinkedPQ(arr, lo, hi);
+        for (int i = hi; i >= lo; i--) {
+            arr[i] = maxPQ.delMax();
         }
     }
 

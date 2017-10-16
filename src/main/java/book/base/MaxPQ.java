@@ -36,7 +36,9 @@ public class MaxPQ<E extends Comparable<E>> implements IPriorityQueue<E> {
   }
 
   public static void sort(Comparable[] arr, int lo, int hi) {
-    if (null == arr || 0 == arr.length) return;
+    if (null == arr || 0 == arr.length) {
+      return;
+    }
     //由于输入数组arr[0]不为null,所以还是需要额外的空间
     MaxPQ maxPQ = new MaxPQ(arr, lo, hi);
     for (int i = hi; i >= lo; i--) {
@@ -79,14 +81,17 @@ public class MaxPQ<E extends Comparable<E>> implements IPriorityQueue<E> {
     arr[j] = tmp;
   }
 
+  @Override
   public boolean isEmpty() {
     return 0 == N;
   }
 
+  @Override
   public int size() {
     return N;
   }
 
+  @Override
   public void insert(E e) {
     if (N >= arr.length - 1) {
       arr = Arrays.copyOf(arr, arr.length * 2);
@@ -95,10 +100,12 @@ public class MaxPQ<E extends Comparable<E>> implements IPriorityQueue<E> {
     swim(arr, N);
   }
 
+  @Override
   public E max() {
     return size() > 0 ? arr[1] : null;
   }
 
+  @Override
   public E delMax() {
     E e = max();
     arr[1] = arr[N];

@@ -16,6 +16,7 @@ public class QuickSortTest extends AbstractSortTest{
   //取出索引和参数值放在测试结果中作为注释
   @Parameterized.Parameters(name = "{index}")
   public static Collection getData() {
+    initArrList(10000000);
     return intList;
   }
 

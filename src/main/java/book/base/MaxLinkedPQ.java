@@ -183,8 +183,6 @@ public class MaxLinkedPQ<E extends Comparable<E>> implements IPriorityQueue<E>,I
         if (less(node, tmpNode)) {
             exch(tmpNode, node);
             sink(node);
-        } else {
-            return;
         }
     }
 

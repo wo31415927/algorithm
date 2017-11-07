@@ -5,13 +5,13 @@ package book.base;
  * 2017/10/12
  */
 public interface IPriorityQueue<E> {
-    public boolean isEmpty();
+    boolean isEmpty();
 
-    public int size();
+    int size();
 
-    public void insert(E e);
+    void insert(E e);
 
-    public E max();
+    E max();
 
-    public E delMax();
+    E delMax();
 }
